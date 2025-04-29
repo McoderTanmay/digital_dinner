@@ -1,19 +1,11 @@
-const { Sequelize } = require("sequelize");
+import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize(
-  process.env.PG_DB,
-  process.env.PG_USER,
-  process.env.PG_PASSWORD,
-  {
-    host: process.env.PG_HOST,
-    dialect: "postgres",
-    port: process.env.PG_PORT,
-    logging: false,
-  }
-);
+const sequelize = new Sequelize('postgresql://postgres:ZfsDsxatrzKpwwymemfdVftgHGrFxWmx@interchange.proxy.rlwy.net:51657/railway');
 
 const connectPostgres = async () => {
   try {
+    // console.log("123", process.env.PG_PASSWORD);
+    
     await sequelize.authenticate();
     console.log("PostgreSQL connected");
   } catch (err) {
@@ -21,4 +13,4 @@ const connectPostgres = async () => {
   }
 };
 
-module.exports = { sequelize, connectPostgres };
+export  { sequelize, connectPostgres };
